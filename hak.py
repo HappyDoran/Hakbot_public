@@ -375,7 +375,7 @@ async def 초기화(ctx):
 
         shutil.copyfile(record_path, destination)
 
-        df = {}
+        df = dict()
 
         await ctx.channel.send("한달 기록 초기화")
         with open(record_path, 'w') as f:
