@@ -370,16 +370,14 @@ async def 초기화(ctx):
     destination = "last_month_record.json"
 
     if guild.owner_id == id:
-        with open(record_path) as f:
-            df = json.load(f)
 
         shutil.copyfile(record_path, destination)
 
-        df = dict()
+        os.remove(record_path)
 
         await ctx.channel.send("한달 기록 초기화")
         with open(record_path, 'w') as f:
-            json.dump(df, f, indent=2, ensure_ascii=False)
+            json.dump({}, f, indent=2, ensure_ascii=False)
 
 
 @bot.command()
