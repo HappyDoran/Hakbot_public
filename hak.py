@@ -18,7 +18,7 @@ from datetime import date
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="~", intents=intents)
 buttons = ButtonsClient(bot)
-token = "MTA2NDEyODQ3NzUwODQwNzQyNg.GLfVLT.Ad84oSeen9lOYMCsBP5u_S_4Ijkn1NHf2QeCrY"
+token = "token"
 
 
 @bot.event
