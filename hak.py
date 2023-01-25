@@ -387,9 +387,9 @@ async def 도움말(ctx):
                                       "\n\n**친선기록**\n친선 횟수를 인정 받을 수 있습니다.\n `~친선기록 <월> <일> <시> <vs 상대팀> \n <@팀원1> <@팀원2> <@팀원3> <@팀원4>`\n `친선 참여자 디스코드 멘션 or 닉네임 작성`\n"
                                       "\n\n**횟수**\n사용자의 이번달 친선 횟수를 확인할 수 있습니다.\n`~횟수`\n"
                                       "\n\n**닉변**\n친선 횟수 등록에 필요한 닉네임을 수정합니다.\n`~닉변 <닉네임>`\n"
-                                      "\n\n**이번달**\n크루원 전원의 이번달 친선 횟수를 확인할 수 있습니다.\n`운영진 이상만 사용 가능합니다.`\n`~이번달`\n",
+                                      "\n\n**이번달**\n크루원 전원의 이번달 친선 횟수를 확인할 수 있습니다.\n`운영진 이상만 사용 가능합니다.`\n`~이번달`\n\n",
                           color=0x62c1cc)
-    # embed.set_thumbnail(file='Thumbnail/KakaoTalk_Photo_2023-01-06-16-36-02.png')
+    #embed.set_thumbnail(url= "https://cdn.discordapp.com/attachments/1061134921034383460/1067346756003696720/KakaoTalk_Photo_2023-01-24-16-34-33.gif")
     embed.set_footer(text='- 기타 질문은 모두 서동원#5533(온라인일 때만 가능)에게 DM 바랍니다')
     await ctx.channel.send(embed=embed)
 
