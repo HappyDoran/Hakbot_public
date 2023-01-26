@@ -380,12 +380,16 @@ async def 초기화(ctx):
     print("flag 1")
     if guild.owner_id == id:
         print("flag 2")
+
         shutil.copyfile(record_path, destination_)
         print("flag 3")
+
         os.remove(record_path)
         print("flag 4")
+
         print("한달 기록 초기화")
         await ctx.channel.send("한달 기록 초기화")
+
         print("flag 5")
         with open(record_path, 'w') as f:
             json.dump({}, f, indent=2, ensure_ascii=False)
