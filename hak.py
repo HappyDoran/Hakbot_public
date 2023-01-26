@@ -130,8 +130,6 @@ async def memo(ctx):
     record_path = "Record.json"
     last_record_path = "last_month_record.json"
 
-
-
     with open(record_path) as f:
         df = json.load(f)
 
@@ -233,7 +231,7 @@ async def 친선기록(ctx, *input):
 
         with open(record_path) as f:
             df = json.load(f)
-            # print(df)
+            print(df)
             # print("hello")
 
         if not df:
@@ -363,13 +361,11 @@ async def 횟수초기화(ctx):
     guild = ctx.message.guild
 
     file_path = "data.json"
-    record_path = "record.json"
     destination = "last_month_data.json"
 
     if guild.owner_id == id:
         with open(file_path) as f:
             df = json.load(f)
-
 
         shutil.copy2(file_path, destination)
 
@@ -389,7 +385,7 @@ async def 친선초기화(ctx):
     id = ctx.message.author.id
     guild = ctx.message.guild
 
-    record_path = "record.json"
+    record_path = "Record.json"
     destination = "last_month_record.json"
     print("flag 1")
 
@@ -402,7 +398,7 @@ async def 친선초기화(ctx):
         print(df)
         print("flag 3")
 
-        #os.remove(record_path)
+        # os.remove(record_path)
         print("flag 4")
 
         print("한달 기록 초기화")
