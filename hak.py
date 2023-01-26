@@ -375,7 +375,7 @@ async def 횟수초기화(ctx):
     else:
         await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
 
-@bot.command
+@bot.command()
 async def 친선초기화(ctx):
     id = ctx.message.author.id
     guild = ctx.message.guild
