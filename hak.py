@@ -356,59 +356,42 @@ async def 닉변(ctx, input):
 
 
 @bot.command()
-async def 횟수초기화(ctx):
+async def 초기화(ctx):
     id = ctx.message.author.id
     guild = ctx.message.guild
 
     file_path = "data.json"
     destination = "last_month_data.json"
 
+    record_path = "Record.json"
+    destination2 = "last_month_record.json"
+
     if guild.owner_id == id:
         with open(file_path) as f:
             df = json.load(f)
+
+        with open(record_path) as f:
+            df2 = json.load(f)
 
         shutil.copy2(file_path, destination)
 
         for index, (key, elem) in enumerate(df.items()):
             elem['cnt'] = 0
         print("유저 친선 횟수 초기화")
-        await ctx.channel.send("유저 친선 횟수 초기화")
+
         with open(file_path, 'w') as f:
             json.dump(df, f, indent=2, ensure_ascii=False)
 
-    else:
-        await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
+        await ctx.channel.send("유저 친선 횟수 초기화")
 
+        with open(destination2, 'w') as f:
+            json.dump(df2, f, indent=2, ensure_ascii=False)
 
-@bot.command()
-async def 친선초기화(ctx):
-    id = ctx.message.author.id
-    guild = ctx.message.guild
-
-    record_path = "Record.json"
-    destination = "last_month_record.json"
-    print("flag 1")
-
-    if guild.owner_id == id:
-        print("flag 2")
-
-        with open(record_path) as f:
-            df = json.load(f)
-
-        print(df)
-        print("flag 3")
-
-        # os.remove(record_path)
-        print("flag 4")
-
-        print("한달 기록 초기화")
-        await ctx.channel.send("한달 기록 초기화")
-
-        print("flag 5")
-        with open(destination, 'w') as f:
-            json.dump(df, f, indent=2, ensure_ascii=False)
         with open(record_path, 'w') as f:
             json.dump({}, f, indent=2, ensure_ascii=False)
+
+        await ctx.channel.send("한달 기록 초기화")
+
 
     else:
         await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
