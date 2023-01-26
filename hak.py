@@ -351,7 +351,7 @@ async def 닉변(ctx, input):
 
 
 @bot.command()
-async def 초기화(ctx):
+async def 횟수초기화(ctx):
     id = ctx.message.author.id
     guild = ctx.message.guild
 
@@ -375,6 +375,11 @@ async def 초기화(ctx):
     else:
         await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
 
+@bot.command
+async  def 친선초기화(ctx):
+    id = ctx.message.author.id
+    guild = ctx.message.guild
+
     record_path = "record.json"
     destination_ = "last_month_record.json"
     print("flag 1")
@@ -395,6 +400,8 @@ async def 초기화(ctx):
         with open(record_path, 'w') as f:
             json.dump({}, f, indent=2, ensure_ascii=False)
 
+    else:
+        await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
 
 @bot.command()
 async def 도움말(ctx):
