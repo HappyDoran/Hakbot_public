@@ -358,54 +358,42 @@ async def 초기화(ctx):
     file_path = "data.json"
     destination = "last_month_data.json"
 
-    record_path = "record.json"
-    destination_ = "last_month_record.json"
 
-    print("flag 1")
     if guild.owner_id == id:
         with open(file_path) as f:
             df = json.load(f)
 
-        print("flag 2")
-        shutil.copyfile(file_path, destination)
-        shutil.copyfile(record_path, destination_)
+        shutil.copy2(file_path, destination)
 
-        print("flag 3")
         for index, (key, elem) in enumerate(df.items()):
             elem['cnt'] = 0
         print("유저 친선 횟수 초기화")
         await ctx.channel.send("유저 친선 횟수 초기화")
-
-        print("flag 4")
-        os.remove(record_path)
-        print("한달 기록 초기화")
-        await ctx.channel.send("한달 기록 초기화")
-
         with open(file_path, 'w') as f:
             json.dump(df, f, indent=2, ensure_ascii=False)
-
-        with open(record_path, 'w') as f:
-            json.dump({}, f, indent=2, ensure_ascii=False)
 
     else:
         await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
 
-    # print("flag 1")
-    # if guild.owner_id == id:
-    #     print("flag 2")
-    #
-    #     shutil.copyfile(record_path, destination_)
-    #     print("flag 3")
-    #
-    #     os.remove(record_path)
-    #     print("flag 4")
-    #
-    #     print("한달 기록 초기화")
-    #     await ctx.channel.send("한달 기록 초기화")
-    #
-    #     print("flag 5")
-    #     with open(record_path, 'w') as f:
-    #         json.dump({}, f, indent=2, ensure_ascii=False)
+    record_path = "record.json"
+    destination_ = "last_month_record.json"
+    print("flag 1")
+
+    if guild.owner_id == id:
+        print("flag 2")
+
+        shutil.copy2(record_path, destination_)
+        print("flag 3")
+
+        os.remove(record_path)
+        print("flag 4")
+
+        print("한달 기록 초기화")
+        await ctx.channel.send("한달 기록 초기화")
+
+        print("flag 5")
+        with open(record_path, 'w') as f:
+            json.dump({}, f, indent=2, ensure_ascii=False)
 
 
 @bot.command()
