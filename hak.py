@@ -396,6 +396,7 @@ async def 친선초기화(ctx):
 
         with open(record_path) as f:
             df = json.load(f)
+            print(df)
 
         print("flag 3")
 
