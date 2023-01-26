@@ -382,7 +382,7 @@ async def 초기화(ctx):
     if guild.owner_id == id:
         print("flag 2")
 
-        shutil.copy2(record_path, destination_)
+        shutil.copyfile(record_path, destination_)
         print("flag 3")
 
         os.remove(record_path)
