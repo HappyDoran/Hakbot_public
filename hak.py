@@ -18,7 +18,7 @@ from datetime import date
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="~", intents=intents)
 buttons = ButtonsClient(bot)
-token = "token"
+token = "MTA2NDEyODQ3NzUwODQwNzQyNg.GeEi3j.iTm023D4oRfRuuN1dMEAZR6rRaBXPBLj2dxzss"
 
 
 @bot.event
@@ -123,6 +123,16 @@ async def 등록(ctx):
 
     with open(file_path, 'w') as f:
         json.dump(df, f, indent=2, ensure_ascii=False)
+
+
+@bot.command()
+async def memo(ctx):
+    record_path = "Record.json"
+
+    with open(record_path) as f:
+        df = json.load(f)
+
+    await ctx.channel.send(df)
 
 
 @bot.command()
@@ -370,7 +380,6 @@ async def 초기화(ctx):
     destination = "last_month_record.json"
 
     if guild.owner_id == id:
-
         shutil.copyfile(record_path, destination)
 
         os.remove(record_path)
@@ -389,7 +398,7 @@ async def 도움말(ctx):
                                       "\n\n**닉변**\n친선 횟수 등록에 필요한 닉네임을 수정합니다.\n`~닉변 <닉네임>`\n"
                                       "\n\n**이번달**\n크루원 전원의 이번달 친선 횟수를 확인할 수 있습니다.\n`운영진 이상만 사용 가능합니다.`\n`~이번달`\n\n",
                           color=0x62c1cc)
-    #embed.set_thumbnail(url= "https://cdn.discordapp.com/attachments/1061134921034383460/1067346756003696720/KakaoTalk_Photo_2023-01-24-16-34-33.gif")
+    # embed.set_thumbnail(url= "https://cdn.discordapp.com/attachments/1061134921034383460/1067346756003696720/KakaoTalk_Photo_2023-01-24-16-34-33.gif")
     embed.set_footer(text='- 기타 질문은 모두 서동원#5533(온라인일 때만 가능)에게 DM 바랍니다')
     await ctx.channel.send(embed=embed)
 
