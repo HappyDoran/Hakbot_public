@@ -128,11 +128,18 @@ async def 등록(ctx):
 @bot.command()
 async def memo(ctx):
     record_path = "Record.json"
+    last_record_path = "last_month_record.json"
+
+
 
     with open(record_path) as f:
         df = json.load(f)
 
+    with open(last_record_path) as f:
+        df2 = json.load(f)
+
     await ctx.channel.send(df)
+    await ctx.channel.send(df2)
 
 
 @bot.command()
@@ -358,7 +365,6 @@ async def 횟수초기화(ctx):
     file_path = "data.json"
     destination = "last_month_data.json"
 
-
     if guild.owner_id == id:
         with open(file_path) as f:
             df = json.load(f)
@@ -375,6 +381,7 @@ async def 횟수초기화(ctx):
     else:
         await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
 
+
 @bot.command()
 async def 친선초기화(ctx):
     id = ctx.message.author.id
@@ -387,7 +394,13 @@ async def 친선초기화(ctx):
     if guild.owner_id == id:
         print("flag 2")
 
-        shutil.copyfile(record_path, destination_)
+        with open(record_path) as f:
+            df = json.load(f)
+
+        with open(destination_) as f:
+            df2 = json.load(f)
+
+        df2 = df
         print("flag 3")
 
         os.remove(record_path)
@@ -397,11 +410,14 @@ async def 친선초기화(ctx):
         await ctx.channel.send("한달 기록 초기화")
 
         print("flag 5")
+        with open(destination_, 'w') as f:
+            json.dump(df2, f, indent=2, ensure_ascii=False)
         with open(record_path, 'w') as f:
             json.dump({}, f, indent=2, ensure_ascii=False)
 
     else:
         await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
+
 
 @bot.command()
 async def 도움말(ctx):
