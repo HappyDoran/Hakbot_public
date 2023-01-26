@@ -388,7 +388,7 @@ async def 친선초기화(ctx):
     guild = ctx.message.guild
 
     record_path = "record.json"
-    destination_ = "last_month_record.json"
+    destination = "last_month_record.json"
     print("flag 1")
 
     if guild.owner_id == id:
@@ -397,10 +397,6 @@ async def 친선초기화(ctx):
         with open(record_path) as f:
             df = json.load(f)
 
-        with open(destination_) as f:
-            df2 = json.load(f)
-
-        df2 = df
         print("flag 3")
 
         os.remove(record_path)
@@ -410,8 +406,8 @@ async def 친선초기화(ctx):
         await ctx.channel.send("한달 기록 초기화")
 
         print("flag 5")
-        with open(destination_, 'w') as f:
-            json.dump(df2, f, indent=2, ensure_ascii=False)
+        with open(destination, 'w') as f:
+            json.dump(df, f, indent=2, ensure_ascii=False)
         with open(record_path, 'w') as f:
             json.dump({}, f, indent=2, ensure_ascii=False)
 
