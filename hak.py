@@ -358,7 +358,6 @@ async def 초기화(ctx):
     file_path = "data.json"
     destination = "last_month_data.json"
 
-    print(guild.owner_id)
 
     if guild.owner_id == id:
         with open(file_path) as f:
@@ -368,7 +367,7 @@ async def 초기화(ctx):
 
         for index, (key, elem) in enumerate(df.items()):
             elem['cnt'] = 0
-
+        print("유저 친선 횟수 초기화")
         await ctx.channel.send("유저 친선 횟수 초기화")
         with open(file_path, 'w') as f:
             json.dump(df, f, indent=2, ensure_ascii=False)
@@ -377,14 +376,17 @@ async def 초기화(ctx):
         await ctx.channel.send(f"{ctx.message.author.mention}님은 권한이 없습니다!")
 
     record_path = "record.json"
-    destination = "last_month_record.json"
-
+    destination_ = "last_month_record.json"
+    print("flag 1")
     if guild.owner_id == id:
-        shutil.copyfile(record_path, destination)
-
+        print("flag 2")
+        shutil.copyfile(record_path, destination_)
+        print("flag 3")
         os.remove(record_path)
-
+        print("flag 4")
+        print("한달 기록 초기화")
         await ctx.channel.send("한달 기록 초기화")
+        print("flag 5")
         with open(record_path, 'w') as f:
             json.dump({}, f, indent=2, ensure_ascii=False)
 
